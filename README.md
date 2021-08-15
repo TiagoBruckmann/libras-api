@@ -1,0 +1,1 @@
+API referente ao app que vai fazer frente a exibição das perguntas e respostas sobre LIBRAS
