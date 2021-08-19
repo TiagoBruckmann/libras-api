@@ -23,5 +23,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Api', 'as' => 'api.'], functi
         Route::get('verify', 'AuthenticateController@verify');
         Route::get('get-user', 'UsersController@getUser');
 
+        # levels
+        Route::get('get-levels', 'LevelsController@getLevels');
+        
+        # categories
+        Route::get('get-categories', 'CategoriesController@getCategories');
+
+        # memory game
+        Route::post('memory-game', 'QuestionsController@memoryGame');
+        
+        # quizz game
+        Route::post('quizz-game', 'QuestionsController@quizzGame');
+
+
     });
 });
