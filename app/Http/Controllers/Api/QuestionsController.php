@@ -10,6 +10,7 @@ use App\Repositories\Auth\AuthRepository;
 
 # models
 use App\Models\questions\question;
+use App\Models\users\User;
 
 class QuestionsController extends Controller
 {
@@ -20,15 +21,6 @@ class QuestionsController extends Controller
 
         $userId = $repository->getUserID($bearerToken);
 
-        if (!$request->filled('level_id')) {
-            return response()->json([
-                'message' => 'A request parameter is missing - level_id',
-                'status_code' => 400
-            ], 400);
-        }
-
-        $levelId = $request->input('level_id');
-
         if (!$request->filled('category_id')) {
             return response()->json([
                 'message' => 'A request parameter is missing - category_id',
@@ -37,6 +29,17 @@ class QuestionsController extends Controller
         }
 
         $categoryId = $request->input('category_id');
+        
+        $user = User::find($userId);
+        if ($user->level <= 5) {
+            $levelId = 1;
+        } else if ($user->level > 5 && $user->level <= 10) {
+            $levelId = rand(1, 2);
+        } else if ($user->level > 10 && $user->level <= 15) {
+            $levelId = rand(1, 3);
+        } else {
+            $levelId = rand(1, 4);
+        }
 
         $data = question::select(
             'awnsers.id',
