@@ -12,8 +12,7 @@ class awnser extends Model
     protected $fillable = [
         "id",
         "awnser",
-        "banner",
-        "is_right"
+        "banner"
     ];
     
     protected $dates = [
