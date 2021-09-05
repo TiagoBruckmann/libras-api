@@ -43,18 +43,34 @@ class QuestionsController extends Controller
             $levelId = rand(1, 4);
         }
 
-        $data = question::select(
-            'quizzes.id',
-            'quizzes.title',
-            'quizzes.banner',
-            'questions.awnser_id'
-        )
-            ->leftJoin('quizzes', 'questions.quizz_id', 'quizzes.id')
-            ->where('questions.level_id', $levelId)
-            ->where('questions.category_id', $categoryId)
-            ->limit(1)
-            ->inRandomOrder()
-            ->first();
+        if ($categoryId == 1) {
+
+            $data = question::select(
+                'quizzes.id',
+                'quizzes.title',
+                'quizzes.banner',
+                'questions.awnser_id'
+            )
+                ->leftJoin('quizzes', 'questions.quizz_id', 'quizzes.id')
+                ->where('questions.level_id', $levelId)
+                ->limit(1)
+                ->inRandomOrder()
+                ->first();
+
+        } else {
+            $data = question::select(
+                'quizzes.id',
+                'quizzes.title',
+                'quizzes.banner',
+                'questions.awnser_id'
+            )
+                ->leftJoin('quizzes', 'questions.quizz_id', 'quizzes.id')
+                ->where('questions.level_id', $levelId)
+                ->where('questions.category_id', $categoryId)
+                ->limit(1)
+                ->inRandomOrder()
+                ->first();
+        }
 
         $awnsers = awnser::select(
             'id',

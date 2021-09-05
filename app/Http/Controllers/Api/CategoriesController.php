@@ -24,7 +24,8 @@ class CategoriesController extends Controller
             'id',
             'name'
         )
-            ->get();
+            ->whereNull('deleted_at')
+            ->paginate(10);
         
         return response()->json($data);
     }

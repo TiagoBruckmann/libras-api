@@ -29,9 +29,10 @@ class UsersController extends Controller
         )
             ->firstWhere('id', $userId);
 
-        $calc1 = $data->qty_level - $data->next_level;
-        $calc2 = $calc1/$data->next_level;
-        $next_level = $calc2*100;
+        $calc1 = $data->next_level - $data->qty_level;
+        $calc2 = $calc1/$data->qty_level;
+        $percent = $calc2 * 100;
+        $next_level = 100 - substr($percent, 0, 2);
         $data->next_level = number_format($next_level, 1, '.');
 
         return response()->json($data);
