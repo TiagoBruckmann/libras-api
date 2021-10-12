@@ -95,6 +95,10 @@
 
                         </div>
                     </div>
+
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        <a href="{{ asset('app/libras-1.0.0.6.apk') }}">Baixe o jogo clicando aqui</a>
+                    </div>
                 </div>
             </div>
         </div>

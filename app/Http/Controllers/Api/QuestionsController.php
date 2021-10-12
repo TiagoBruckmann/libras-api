@@ -76,7 +76,7 @@ class QuestionsController extends Controller
             'id',
             'awnser'
         )
-            ->where('id', '<>', $data->awnser_id)
+            # ->where('id', '<>', $data->awnser_id)
             ->limit(3)
             ->inRandomOrder()
             ->get();
